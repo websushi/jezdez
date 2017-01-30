@@ -25,7 +25,7 @@ if (env.DATABASE_URL) {
             name: dbUrl.path.substring(1)
         },
         driver = ({
-            mysql2: 'mysql'
+            mysql2: 'mysql',
             mariadb: 'mysql'
         }[db.driver]) || db.driver;
 
