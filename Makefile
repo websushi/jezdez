@@ -6,7 +6,7 @@ VERSION ?=
 clean:
 	@echo "Keeping: $(KEEP)"
 	rm -rf *
-	git reset $(KEEP)
+	git checkout -- $(KEEP)
 
 
 install: clean
