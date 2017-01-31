@@ -127,6 +127,13 @@ paths = {
     contentPath: path.join(__dirname, 'content')
 };
 
+server = {
+    // Host to be passed to node's `net.Server#listen()`
+    host: env.HOST || '0.0.0.0',
+    // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
+    port: env.PORT ? parseInt(env.PORT) : 5000
+};
+
 config = {
     // ### Production
     // When running Ghost in the wild, use the production environment
@@ -135,13 +142,10 @@ config = {
         url: env.SITE_URL || 'http://my-ghost-blog.com',
         mail: mail,
         database: database,
+        compress: env.COMPRESS === 'false' ? false : true,
         paths: paths,
-        server: {
-            // Host to be passed to node's `net.Server#listen()`
-            host: '0.0.0.0',
-            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
-            port: env.PORT
-        }
+        server: server,
+        maintenance: { enabled: env.MAINTENANCE === 'true' ? true : false }
     }
 };
 
